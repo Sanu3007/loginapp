@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Head from "next/head";
 import Loginpage from "../components/loginpage";
 import User from "../components/user";
+import Dashboard from "../containers/dashboard";
 
 const Home = () => {
   const loginurl =
@@ -17,6 +17,7 @@ const Home = () => {
   const [codename, setCodeName] = useState("");
   const [user, setUser] = useState({});
 
+  //Function to fetch profile of user after logged in
   const getProfile = (token, codename) => {
     const headers = {
       "Content-Type": "application/json",
@@ -42,6 +43,7 @@ const Home = () => {
       });
   };
 
+  //Function to fetch User information
   const fetchUser = async () => {
     const headers = {
       "Content-Type": "application/json",
@@ -92,7 +94,8 @@ const Home = () => {
           handleSubmit={handleSubmit}
         />
       ) : (
-        <User user={user} />
+        // <User user={user} />
+        <Dashboard token={token} codename={codename} />
       )}
     </div>
   );
